@@ -1,0 +1,250 @@
+/** Google Fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
+/** CSS Variables **/
+:root {
+  --color-dark-blue: hsl(240, 38%, 20%);
+  --color-grayish-blue: hsl(240, 18%, 77%);
+}
+
+/** CSS Reset **/
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/** Make page take at least 100% of viewport height. */
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+  background-image: url('../img/pattern-curve.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+main {
+  min-height: 100%;
+}
+
+/** Grid Setup **/
+main {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'image' 'testimonial';
+}
+
+.fm-image-pane {
+  grid-area: image;
+  background-image: url('../img/pattern-bg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
+}
+
+.fm-testimonial-pane {
+  grid-area: testimonial;
+  overflow-y: hidden;
+  background-image: url('../img/pattern-quotes.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 64px;
+}
+
+/** Image Pane **/
+.fm-image-pane img {
+  display: block;
+  height: 90%;
+  max-height: 320px;
+  margin: 32px auto 0px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fm-image-pane img[src="#"] {
+  opacity: 0;
+}
+
+.fm-image-pane img.fading {
+  animation-name: image-fading;
+  animation-duration: 0.125s;
+  animation-fill-mode: forwards;
+}
+
+.fm-image-pane img.unfading {
+  animation-name: image-unfading;
+  animation-duration: 0.125s;
+  animation-fill-mode: forwards;
+}
+
+.fm-image-pane .fm-button-strip {
+  position: relative;
+  width: 64px;
+  height: 32px;
+  z-index: 1;
+  margin: -12px auto;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fm-image-pane .fm-button-strip button {
+  background-color: transparent;
+  border: none;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.fm-image-pane .fm-button-strip button:hover {
+  cursor: pointer;
+}
+
+.fm-image-pane .fm-button-strip button:disabled {
+  opacity: 0.2;
+}
+
+.fm-image-pane .fm-button-strip button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.fm-image-pane .fm-button-strip #prev {
+  background-image: url('../img/icon-prev.svg');
+}
+
+.fm-image-pane .fm-button-strip #next {
+  background-image: url('../img/icon-next.svg');
+}
+
+.fm-testimonial-pane #fm-testimonial {
+  position: relative;
+  top: 0%;
+  padding: 0px 20px;
+  text-align: center;
+  opacity: 1;
+}
+
+.fm-testimonial-pane #fm-testimonial.fading {
+  animation-name: testimonial-fading;
+  animation-duration: 0.125s;
+  animation-fill-mode: forwards;
+}
+
+.fm-testimonial-pane #fm-testimonial.unfading {
+  animation-name: testimonial-unfading;
+  animation-duration: 0.125s;
+  animation-fill-mode: forwards;
+}
+
+.fm-testimonial-pane #fm-testimonial #fm-testimonial-quote {
+  padding: 20px 0px;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.fm-testimonial-pane #fm-testimonial #fm-testimonial-name {
+  font-weight: 700;
+}
+
+.fm-testimonial-pane #fm-testimonial #fm-testimonial-title {
+  padding-top: 4px;
+  color: var(--color-grayish-blue);
+}
+
+/* Image Fading and Unfading Animations */
+@keyframes image-fading {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes image-unfading {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Testimonial Fading and Unfading Animations */
+@keyframes testimonial-fading {
+  0%   { opacity: 1; top: 0%; }
+  100% { opacity: 0; top: 50%; }
+}
+
+@keyframes testimonial-unfading {
+  0%   { opacity: 0; top: 50%; }
+  100% { opacity: 1; top: 0%; }
+}
+
+/** Tablet Media Query **/
+@media (min-width: 800px) {
+  main {
+    margin: 0px auto;
+    grid-template-rows: 100vh;
+    grid-template-columns: 40% 10% 10% 40%;
+  }
+
+  .fm-image-pane {
+    grid-column: 2 / 5;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .fm-image-pane img {
+    max-height: 360px;
+  }
+
+  .fm-image-pane .fm-button-strip {
+    margin: -12px 25%;
+  }
+
+  .fm-testimonial-pane {
+    padding-left: 128px;
+    grid-column: 1 / 4;
+    grid-row: 1;
+    align-self: center;
+    overflow-x: visible;
+    background-position: 25% top;
+  }
+
+  .fm-testimonial-pane #fm-testimonial {
+    text-align: left;
+  }
+
+  .fm-testimonial-pane #fm-testimonial-name,
+  .fm-testimonial-pane #fm-testimonial-title {
+    display: inline-block;
+  }
+
+  .fm-testimonial-pane #fm-testimonial-name {
+    padding-right: 4px;
+  }
+
+  .fm-testimonial-pane #fm-testimonial-title {
+    padding-left: 4px;
+  }
+
+  @keyframes testimonial-fading {
+    0%   { opacity: 1; right: 0%; }
+    100% { opacity: 0; right: 50%; }
+  }
+  
+  @keyframes testimonial-unfading {
+    0%   { opacity: 0; right: 50%; }
+    100% { opacity: 1; right: 0%; }
+  }
+}
+
+/** Desktop Media Query **/
+@media (min-width: 1000px) {
+  .fm-image-pane img {
+    max-height: 480px;
+  }
+}
