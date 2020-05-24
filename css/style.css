@@ -24,9 +24,8 @@ body {
   height: 100%;
   min-height: 100%;
   background-image: url('../img/pattern-curve.svg');
-  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: bottom left;
   background-attachment: fixed;
 }
 
@@ -37,7 +36,7 @@ main {
 /** Grid Setup **/
 main {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas: 'image' 'testimonial';
 }
 
@@ -56,7 +55,6 @@ main {
   background-image: url('../img/pattern-quotes.svg');
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: 64px;
 }
 
 /** Image Pane **/
@@ -197,21 +195,22 @@ main {
     align-self: center;
   }
 
-  .fm-image-pane img {
-    max-height: 360px;
-  }
-
   .fm-image-pane .fm-button-strip {
     margin: -12px 25%;
   }
 
   .fm-testimonial-pane {
+    max-height: 800px;
     padding-left: 128px;
     grid-column: 1 / 4;
     grid-row: 1;
     align-self: center;
     overflow-x: visible;
-    background-position: 25% top;
+    background-position: 35% top;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .fm-testimonial-pane #fm-testimonial {
@@ -221,6 +220,7 @@ main {
   .fm-testimonial-pane #fm-testimonial-name,
   .fm-testimonial-pane #fm-testimonial-title {
     display: inline-block;
+    font-size: 24px;
   }
 
   .fm-testimonial-pane #fm-testimonial-name {
@@ -245,6 +245,14 @@ main {
 /** Desktop Media Query **/
 @media (min-width: 1000px) {
   .fm-image-pane img {
-    max-height: 480px;
+    max-height: 520px;
+  }
+
+  .fm-testimonial-pane {
+    height: 50%;
+  }
+
+  .fm-testimonial-pane #fm-testimonial-quote {
+    font-size: 52px;
   }
 }
